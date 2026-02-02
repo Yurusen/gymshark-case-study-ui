@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  background-color: #141414;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  padding: 40px;
+  color: white;
 }
 
 .App-logo {
@@ -35,4 +44,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.gymshark-tint {
+  display: block;
+  filter: invert(56%) sepia(93%) saturate(3426%) hue-rotate(175deg)
+    brightness(100%) contrast(100%);
+  width: 450px;
+}
+
+.divider {
+  width: 60%; 
+  height: 1px;      
+  background-color: #282c34a2; 
+  border-radius: 2px;
+  margin: 30px auto;
 }
