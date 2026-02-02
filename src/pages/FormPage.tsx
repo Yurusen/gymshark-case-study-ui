@@ -2,18 +2,35 @@ import React, { useState } from "react";
 import { postData } from "../api/api";
 import "../index.css";
 import "../App.css";
+import { boolean } from "yargs";
 
 const FormPage: React.FC = () => {
   const [input, setInputValue] = useState<number>(0);
   const [response, setResponse] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [packSizes, setPackSizes] = useState([0]);
+  const [showPackSizes, setShowPackSizes] = useState(false);
+
+  const handlePackChange = (index: number, value: any) => {
+    const updated = [...packSizes];
+    updated[index] = Number(value); // convert to int
+    setPackSizes(updated);
+  };
+
+  const addPack = () => {
+    setPackSizes([...packSizes, 0]);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    const validPackSizes = packSizes.filter((p) => p > 0);
 
     try {
-      const res = await postData({ items: input });
+      const res = await postData({
+        items: Number(input),
+        packSizes: validPackSizes,
+      });
       setResponse(res);
     } catch (e) {
       console.error("Error: " + e);
@@ -25,17 +42,95 @@ const FormPage: React.FC = () => {
     }
   };
 
+  const formatPacks = (packs: Record<string, number>) => {
+    return Object.entries(packs)
+      .filter(([, count]) => count > 0)
+      .map(([size, count]) => {
+        const plural = count > 1 ? "s" : "";
+        return `${count} x ${size} Pack${plural}`;
+      });
+  };
+
+  const clearAll = () => {
+    setShowPackSizes(false);
+    setPackSizes([]);
+    setLoading(false);
+    setResponse(null);
+    setInputValue(0);
+  };
+
+  const deletePack = (indexToRemove: number) => {
+  setPackSizes((prevPacks) =>
+    prevPacks.filter((_, index) => index !== indexToRemove)
+  );
+};
+
+
   return (
     <div className="content">
-      <h1>Order Pack Calculator</h1>
+      <img
+        src="https://yurusen.github.io/gymshark-case-study-ui/gymshark_logo.png"
+        alt="logo"
+        width="450"
+        className="gymshark-tint"
+      />
+
+      <div className="divider"></div>
+      <div className="flexDiv">
+        <h1>Order Pack Calculator</h1>
+
+        <button type="button" className="cyan-button" onClick={clearAll}>
+          Clear
+        </button>
+      </div>
       <div className="divider"></div>
 
-      <h3>Enter the number of items to be ordered:</h3>
-
       <form onSubmit={handleSubmit}>
-        <label>
-            Number of Items: 
-        </label>
+        <div>
+          <button
+            type="button"
+            className="cyan-button"
+            onClick={() => setShowPackSizes(!showPackSizes)}
+          >
+            Custom Pack Sizes?
+          </button>
+        </div>
+        {showPackSizes && (
+          <div>
+            <div className="packsize-row">
+              {packSizes.map((pack, index) => (
+                <div key={index}>
+                  <label className="label">Pack {index + 1}:</label>
+
+                  <input
+                    type="number"
+                    value={pack}
+                    onChange={(e) => handlePackChange(index, e.target.value)}
+                    placeholder={`Pack size #${index + 1}`}
+                    required
+                    className="packsize-input"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => deletePack(index)}
+                    className="crimson-button"
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
+            <button type="button" onClick={addPack} className="cyan-button">
+              Add Pack
+            </button>
+                      <div className="divider"></div>
+
+          </div>
+        )}
+        <h3>Enter the number of items to be ordered:</h3>
+
+        <label>Number of Items:</label>
         <input
           type="number"
           value={input}
@@ -50,10 +145,21 @@ const FormPage: React.FC = () => {
       </form>
 
       {loading && <p>Loading...</p>}
-      {response && <pre>
-              <div className="divider"></div>
+     {response && (
+  <>
+    <div className="divider"></div>
+    {response.Packs && Object.keys(response.Packs).length > 0 ? (
+      <pre className="pack-output">
+        {formatPacks(response.Packs).join("\n")}
+      </pre>
+    ) : (
+      <pre className="pack-output">
+        0 packs
+      </pre>
+    )}
+  </>
+)}
 
-        {JSON.stringify(response, null, 2)}</pre>}
     </div>
   );
 };
