@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/gymshark-case-study-ui/static/css/main.4faf7f76.css",
-    "main.js": "/gymshark-case-study-ui/static/js/main.d92b0550.js",
+    "main.css": "/gymshark-case-study-ui/static/css/main.66cc0f1b.css",
+    "main.js": "/gymshark-case-study-ui/static/js/main.28e91493.js",
     "static/js/453.95d03fc4.chunk.js": "/gymshark-case-study-ui/static/js/453.95d03fc4.chunk.js",
     "index.html": "/gymshark-case-study-ui/index.html",
-    "main.4faf7f76.css.map": "/gymshark-case-study-ui/static/css/main.4faf7f76.css.map",
-    "main.d92b0550.js.map": "/gymshark-case-study-ui/static/js/main.d92b0550.js.map",
+    "main.66cc0f1b.css.map": "/gymshark-case-study-ui/static/css/main.66cc0f1b.css.map",
+    "main.28e91493.js.map": "/gymshark-case-study-ui/static/js/main.28e91493.js.map",
     "453.95d03fc4.chunk.js.map": "/gymshark-case-study-ui/static/js/453.95d03fc4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4faf7f76.css",
-    "static/js/main.d92b0550.js"
+    "static/css/main.66cc0f1b.css",
+    "static/js/main.28e91493.js"
   ]
 }
