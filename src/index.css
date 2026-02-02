@@ -25,11 +25,26 @@ code {
   transition: border-color 0.2s ease;
 }
 
+.packsize-input {
+  background-color: transparent; 
+  border: 2px solid #00A6E0;  
+  border-radius: 6px;     
+  width: 80px;    
+  padding: 8px 12px; 
+  color: #000;                
+  outline: none;                  
+  font-size: 16px;                   
+  color: white;
+  margin: 10px;
+  transition: border-color 0.2s ease;
+}
+
 .cyan-button {
   background-color: #00A6E0;
   color: #FFFFFF;        
   border: 2px solid #00A6E0;
   border-radius: 6px;
+  margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -41,16 +56,56 @@ code {
   box-shadow: 0 4px 10px rgba(0, 166, 224, 0.3);
 }
 
+.crimson-button {
+  background-color: crimson;
+  color: #FFFFFF;        
+  border: 2px solid crimson;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crimson-button:hover {
+  background-color: #b22222; /* slightly darker red on hover */
+  box-shadow: 0 4px 10px rgba(220, 20, 60, 0.3);
+}
+
+
 .content {
     min-width: 85vw;
     margin: 0 auto;
-    padding: 0px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
 h1 {
     padding: 0px;
     margin: 0px;
+}
+
+.pack-output {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.label {
+    margin: 10px;
+}
+
+.packsize-row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.flexDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
