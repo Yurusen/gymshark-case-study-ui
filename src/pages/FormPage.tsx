@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { postData } from "../api/api";
 import "../index.css";
 import "../App.css";
-import { boolean } from "yargs";
 
 const FormPage: React.FC = () => {
   const [input, setInputValue] = useState<number>(0);
@@ -13,7 +12,7 @@ const FormPage: React.FC = () => {
 
   const handlePackChange = (index: number, value: any) => {
     const updated = [...packSizes];
-    updated[index] = Number(value); // convert to int
+    updated[index] = Number(value);
     setPackSizes(updated);
   };
 
@@ -53,18 +52,22 @@ const FormPage: React.FC = () => {
 
   const clearAll = () => {
     setShowPackSizes(false);
-    setPackSizes([]);
+    setPackSizes([0]);
     setLoading(false);
     setResponse(null);
     setInputValue(0);
   };
 
-  const deletePack = (indexToRemove: number) => {
-  setPackSizes((prevPacks) =>
-    prevPacks.filter((_, index) => index !== indexToRemove)
-  );
-};
+  const clearAllCustomPackSizes = () => {
+    setPackSizes([0]);
+    setShowPackSizes(false);
+  };
 
+  const deletePack = (indexToRemove: number) => {
+    setPackSizes((prevPacks) =>
+      prevPacks.filter((_, index) => index !== indexToRemove),
+    );
+  };
 
   return (
     <div className="content">
@@ -78,10 +81,6 @@ const FormPage: React.FC = () => {
       <div className="divider"></div>
       <div className="flexDiv">
         <h1>Order Pack Calculator</h1>
-
-        <button type="button" className="cyan-button" onClick={clearAll}>
-          Clear
-        </button>
       </div>
       <div className="divider"></div>
 
@@ -124,8 +123,15 @@ const FormPage: React.FC = () => {
             <button type="button" onClick={addPack} className="cyan-button">
               Add Pack
             </button>
-                      <div className="divider"></div>
 
+            <button
+              type="button"
+              onClick={clearAllCustomPackSizes}
+              className="crimson-button"
+            >
+              Delete all custom Packs?
+            </button>
+            <div className="divider"></div>
           </div>
         )}
         <h3>Enter the number of items to be ordered:</h3>
@@ -145,21 +151,24 @@ const FormPage: React.FC = () => {
       </form>
 
       {loading && <p>Loading...</p>}
-     {response && (
-  <>
-    <div className="divider"></div>
-    {response.Packs && Object.keys(response.Packs).length > 0 ? (
-      <pre className="pack-output">
-        {formatPacks(response.Packs).join("\n")}
-      </pre>
-    ) : (
-      <pre className="pack-output">
-        0 packs
-      </pre>
-    )}
-  </>
-)}
-
+      {response && (
+        <>
+          <div className="divider"></div>
+          {response.Packs && Object.keys(response.Packs).length > 0 ? (
+            <div className="displayFlex">
+            <pre className="pack-output">
+              {formatPacks(response.Packs).join("\n")}
+             
+            </pre>
+             <button type="button" className="cyan-button" onClick={clearAll}>
+                Clear
+              </button>
+            </div>
+          ) : (
+            <pre className="pack-output">0 packs</pre>
+          )}
+        </>
+      )}
     </div>
   );
 };
