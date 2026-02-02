@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <img
-        src="/gymshark_logo.png"
+        src="https://yurusen.github.io/gymshark-case-study-ui/gymshark_logo.png"
         alt="logo"
         width="450"
         className="gymshark-tint"
