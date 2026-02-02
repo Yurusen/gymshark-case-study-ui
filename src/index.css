@@ -15,7 +15,7 @@ code {
 .cyan-input {
   background-color: transparent; 
   border: 2px solid #00A6E0;  
-  border-radius: 6px;         
+  border-radius: 99px;         
   padding: 8px 12px; 
   color: #000;                
   outline: none;                  
@@ -28,7 +28,7 @@ code {
 .packsize-input {
   background-color: transparent; 
   border: 2px solid #00A6E0;  
-  border-radius: 6px;     
+  border-radius: 99px;     
   width: 80px;    
   padding: 8px 12px; 
   color: #000;                
@@ -43,7 +43,7 @@ code {
   background-color: #00A6E0;
   color: #FFFFFF;        
   border: 2px solid #00A6E0;
-  border-radius: 6px;
+  border-radius: 99px;
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
@@ -60,7 +60,7 @@ code {
   background-color: crimson;
   color: #FFFFFF;        
   border: 2px solid crimson;
-  border-radius: 6px;
+  border-radius: 99px;
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
